@@ -18,8 +18,7 @@ And then in /start.sh remember to initialize the luna client by doing this:
 # . /luna-init.sh
 ```
 
-The luna-init.sh script creates the configuration files for initializing a 
-connection with the luna HSM.
+The luna-init.sh script creates the configuration files for initializing a connection with the luna HSM. To use mount /dev/log and /usr/safenet/lunaclient/cert from the host. The latter should contain the client key and cert for authorizing access to the Luna HSM partition. You may also have to set additional configuration options depending on how Java authenticates to the PKCS#11 module.
 
 
 Directory Layout
@@ -38,8 +37,7 @@ In the examples below, the /etc/luna/cert directory looks like this:
     └── hsm.example.comCert.pem
 ```
 
-You must of course configure the HSM with a client matching the cert for client.example.com and assign
-that client to at least one partition.
+You must of course configure the HSM with a client matching the cert for client.example.com and assign that client to at least one partition.
 
 Examples
 ---
@@ -57,3 +55,8 @@ Slot    Serial #        Label
  1      999999999       example
 
 ```
+
+Testing
+---
+
+The dockerfile also contains softhsm2 which can be used for testing a configuration before talking to a production HSM.
