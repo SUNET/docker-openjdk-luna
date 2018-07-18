@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 SAFENET=/usr/safenet/lunaclient
 
 cat>/etc/Chrystoki.conf<<EOF
@@ -56,6 +58,8 @@ if [ -d /etc/Chrystoki.conf.d ]; then
 fi
 
 export PATH=/usr/safenet/lunaclient/bin:$PATH
+
+mkdir -p "${SAFENET}/cert/client" "${SAFENET}/cert/server"
 
 if [ ! -f "${SAFENET}/cert/client/${HOSTNAME}.pem" -o ! -f "${SAFENET}/cert/client/${HOSTNAME}Key.pem" ]; then
    vtl createCert -n ${HOSTNAME}
