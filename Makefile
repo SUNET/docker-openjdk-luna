@@ -1,9 +1,11 @@
-VERSION=luna6.2-jre8
+JRE=8
+LUNA=6.2
+VERSION=luna$(LUNA)-jre$(JRE)
 NAME=openjdk-jre-luna
 
 all: build push
 build:
-	docker build --no-cache=true -t $(NAME):$(VERSION) .
+	docker build --no-cache=true --build-arg OPENJDK_TAG=$(JRE)-jre -t $(NAME):$(VERSION) .
 	docker tag $(NAME):$(VERSION) docker.sunet.se/$(NAME):$(VERSION)
 update:
 	docker build -t $(NAME):$(VERSION) .

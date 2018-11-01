@@ -1,4 +1,5 @@
-FROM openjdk:8-jre
+ARG OPENJDK_TAG=8-jre
+FROM openjdk:${OPENJDK_TAG}
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get -q update
 RUN apt-get -y upgrade
