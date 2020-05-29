@@ -3,11 +3,18 @@
 set -x
 
 SAFENET=/usr/safenet/lunaclient
+LIB=/usr/lib/libCryptoki2.so
+LIB64=/usr/lib/libCryptoki2_64.so
+
+if [ "x${LUNA_DEBUG}" = "xyes" ]; then
+   LIB="/usr/safenet/lunaclient/lib/libcklog2.so"
+   LIB64="/usr/safenet/lunaclient/lib/libcklog2.so"
+fi
 
 cat>/etc/Chrystoki.conf<<EOF
 Chrystoki2 = {
-   LibUNIX = /usr/lib/libCryptoki2.so;
-   LibUNIX64 = /usr/lib/libCryptoki2_64.so;
+   LibUNIX = ${LIB};
+   LibUNIX64 = ${LIB64};
 }
 
 Luna = {
@@ -52,6 +59,19 @@ done
 cat>>/etc/Chrystoki.conf<<EOF
 }
 EOF
+
+if [ "x${LUNA_DEBUG}" = "xyes" ]; then
+cat>>/etc/Chrystoki.conf<<EOF
+CkLog2 = {
+   Enabled = 1;
+   NewFormat = 1;
+   File = ${CKLOG:-/tmp/cklog.txt};
+   Error = ${CKLOG_ERROR:-/tmp/cklog_error.txt};
+   LibUNIX = /usr/lib/libCryptoki2.so;
+   LibUNIX64 = /usr/lib/libCryptoki2_64.so;
+}
+EOF
+fi
 
 if [ -d /etc/Chrystoki.conf.d ]; then
    cat /etc/Chrystoki.conf.d/*.conf >> /etc/Chrystoki.conf
