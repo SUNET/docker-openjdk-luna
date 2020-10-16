@@ -6,7 +6,7 @@ SAFENET=/usr/safenet/lunaclient
 LIB=/usr/lib/libCryptoki2.so
 LIB64=/usr/lib/libCryptoki2_64.so
 
-if [ "x${LUNA_DEBUG}" = "xyes" ]; then
+if [ "x${LUNA_DEBUG}" = "xyes" -o "x${LUNA_DEBUG}" = "xtrue" ]; then
    LIB="/usr/safenet/lunaclient/lib/libcklog2.so"
    LIB64="/usr/safenet/lunaclient/lib/libcklog2.so"
 fi
@@ -60,7 +60,7 @@ cat>>/etc/Chrystoki.conf<<EOF
 }
 EOF
 
-if [ "x${LUNA_DEBUG}" = "xyes" ]; then
+if [ "x${LUNA_DEBUG}" = "xyes" -o "x${LUNA_DEBUG}" = "xtrue" ]; then
 cat>>/etc/Chrystoki.conf<<EOF
 CkLog2 = {
    Enabled = 1;

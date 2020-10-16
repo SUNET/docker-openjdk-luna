@@ -1,8 +1,8 @@
-FROM openjdk:8-jre
+FROM openjdk:${JRE}-jre
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get -q update
 RUN apt-get -y upgrade
-COPY luna-client-7.2 /usr/src/luna-client
+COPY luna-client-${LUNA} /usr/src/luna-client
 WORKDIR /usr/src/luna-client
 RUN apt-get install -y procps softhsm2
 RUN ./deb.sh
