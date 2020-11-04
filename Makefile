@@ -7,8 +7,12 @@ NAME=openjdk-jre-luna
 all: build push
 
 dist:
-	$(MAKE) LUNA=6.2 build push
-	$(MAKE) LUNA=7.2 build push
+	$(MAKE) LUNA=6.2 JRE=11 build push
+	$(MAKE) LUNA=7.2 JRE=11 build push
+	$(MAKE) LUNA=7.4 JRE=11 build push
+	$(MAKE) LUNA=6.2 JRE=8 build push
+	$(MAKE) LUNA=7.2 JRE=8 build push
+	$(MAKE) LUNA=7.4 JRE=8 build push
 
 .PHONY: Dockerfile
 
