@@ -1,10 +1,11 @@
 FROM openjdk:${JRE}-jre
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+RUN echo "deb-src  http://deb.debian.org/debian buster main" > /etc/apt/sources.list.d/buster-src.list
 RUN apt-get -q update
 RUN apt-get -y upgrade
 COPY luna-client-${LUNA} /usr/src/luna-client
 WORKDIR /usr/src/luna-client
-RUN apt-get install -y procps softhsm2
+RUN apt-get install -y procps softhsm2 opensc libengine-pkcs11-openssl build-essential vim libssl-dev
 RUN ./deb.sh
 RUN test -f /usr/lib/libcklog2.so || ln -s /usr/safenet/lunaclient/lib/libcklog2.so /usr/lib/libcklog2.so
 RUN rm -rf /usr/src/luna-client
