@@ -1,8 +1,8 @@
-FROM openjdk:${JRE}-jre
+#FROM openjdk:${JRE}-jre
+FROM ubuntu:bionic
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-RUN echo "deb-src  http://deb.debian.org/debian buster main" > /etc/apt/sources.list.d/buster-src.list
-RUN apt-get -q update
-RUN apt-get -y upgrade
+RUN apt-get -q update && apt-get -y upgrade 
+RUN apt-get install -y wget openjdk-${JRE}-jre
 COPY luna-client-${LUNA} /usr/src/luna-client
 WORKDIR /usr/src/luna-client
 RUN apt-get install -y procps softhsm2 opensc libengine-pkcs11-openssl build-essential vim libssl-dev
