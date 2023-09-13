@@ -1,6 +1,6 @@
 JRE:=8
 LUNA:=6.2
-VERSION:=ubuntu-luna$(LUNA)-jre$(JRE)
+VERSION:=luna$(LUNA)-jre$(JRE)
 NAME=openjdk-jre-luna
 
 
