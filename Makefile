@@ -1,18 +1,22 @@
 JRE:=8
 LUNA:=6.2
-VERSION:=luna$(LUNA)-jre$(JRE)
+BASE_IMAGE:=ubuntu:bionic
+TAG:=
+VERSION:=luna$(LUNA)-jre$(JRE)$(TAG)
 NAME=openjdk-jre-luna
 
 
-all: build push
+all: dist
 
 dist:
-	$(MAKE) LUNA=6.2 JRE=11 build push
-	$(MAKE) LUNA=7.2 JRE=11 build push
-	$(MAKE) LUNA=7.4 JRE=11 build push
-	$(MAKE) LUNA=6.2 JRE=8 build push
-	$(MAKE) LUNA=7.2 JRE=8 build push
-	$(MAKE) LUNA=7.4 JRE=8 build push
+	$(MAKE) LUNA=7.2 JRE=17 BASE_IMAGE=debian:stable build push
+	$(MAKE) LUNA=7.4 JRE=17 BASE_IMAGE=debian:stable build push
+	$(MAKE) LUNA=6.2 JRE=11 BASE_IMAGE:=ubuntu:bionic build push
+	$(MAKE) LUNA=7.2 JRE=11 BASE_IMAGE:=ubuntu:bionic build push
+	$(MAKE) LUNA=7.4 JRE=11 BASE_IMAGE:=ubuntu:bionic build push
+	$(MAKE) LUNA=6.2 JRE=8 BASE_IMAGE:=ubuntu:bionic build push
+	$(MAKE) LUNA=7.2 JRE=8 BASE_IMAGE:=ubuntu:bionic build push
+	$(MAKE) LUNA=7.4 JRE=8 BASE_IMAGE:=ubuntu:bionic build push
 
 .PHONY: Dockerfile
 

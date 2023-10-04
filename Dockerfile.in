@@ -1,5 +1,4 @@
-#FROM openjdk:${JRE}-jre
-FROM ubuntu:bionic
+FROM ${BASE_IMAGE}
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get -q update && apt-get -y upgrade 
 RUN apt-get install -y wget openjdk-${JRE}-jre
