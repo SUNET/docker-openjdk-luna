@@ -9,6 +9,7 @@ NAME=openjdk-jre-luna
 all: dist
 
 dist:
+	$(MAKE) LUNA=7.4 JRE=21 BASE_IMAGE=debian:sid build push
 	$(MAKE) LUNA=7.2 JRE=17 BASE_IMAGE=debian:stable build push
 	$(MAKE) LUNA=7.4 JRE=17 BASE_IMAGE=debian:stable build push
 	$(MAKE) LUNA=6.2 JRE=11 BASE_IMAGE:=ubuntu:bionic build push
