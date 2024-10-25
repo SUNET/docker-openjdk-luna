@@ -28,7 +28,7 @@ Dockerfile: Dockerfile.in
 	env JRE=$(JRE) LUNA=$(LUNA) envsubst < $< > $@
 
 build: Dockerfile
-	docker build --no-cache=false -t $(NAME):$(VERSION) .
+	docker $(BUILD) --no-cache=false -t $(NAME):$(VERSION) .
 	docker tag $(NAME):$(VERSION) docker.sunet.se/$(NAME):$(VERSION)
 push:
 	docker push docker.sunet.se/$(NAME):$(VERSION)
