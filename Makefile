@@ -4,6 +4,9 @@ BASE_IMAGE:=ubuntu:bionic
 TAG:=
 VERSION:=luna$(LUNA)-jre$(JRE)$(TAG)
 NAME=openjdk-jre-luna
+# E.g to build on a ARM Mac with Orbstack
+# make BUILD='build --platform linux/amd64'
+BUILD=build
 
 
 all: dist
